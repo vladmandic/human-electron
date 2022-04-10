@@ -1,0 +1,48 @@
+{
+  "name": "human-electron",
+  "version": "0.0.1",
+  "description": "Human with ElectronJS",
+  "main": "app/main.js",
+  "scripts": {
+    "transpile": "esbuild --bundle --format=esm --platform=browser --target=es2018 --outfile=app/renderer.js app/renderer.ts",
+    "start": "npm run transpile && electron .",
+    "package": "npm run transpile && electron-forge package",
+    "make": "npm run transpile && electron-forge make"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vladmandic/human-electron.git"
+  },
+  "author": "Vladimir Mandic <mandic00@live.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vladmandic/human-electron/issues"
+  },
+  "homepage": "https://github.com/vladmandic/human-electron#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.18.0",
+    "@typescript-eslint/parser": "^5.18.0",
+    "@vladmandic/human": "^2.6.5",
+    "electron": "^18.0.3",
+    "esbuild": "^0.14.34",
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "human_electron"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        }
+      ]
+    }
+  }
+}
